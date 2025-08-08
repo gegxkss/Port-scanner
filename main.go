@@ -1,4 +1,3 @@
-// Package scanport is a very fast multi-threaded TCP/UDP port scanner
 package main
 
 import (
@@ -18,7 +17,6 @@ import (
 
 var wg sync.WaitGroup
 
-// Create objects to colorize stdout
 var (
 	green = color.New(color.FgGreen)
 	red   = color.New(color.FgRed)
@@ -64,7 +62,6 @@ func main() {
 
 	flag.Parse()
 
-	// Ensure at least one host and port are defined, otherwise exit and display usage
 	if len(hosts) == 0 || (len(tcpPorts) == 0 && len(udpPorts) == 0) {
 		flag.Usage()
 		os.Exit(1)
@@ -150,7 +147,6 @@ func resolveHost(host string) (addr, hostname string) {
 		if err != nil {
 			hostname = ""
 		} else {
-			// Use first returned hostname and trim trailing period
 			hostname = r[0][:len(r[0])-1]
 		}
 	} else {
@@ -160,7 +156,7 @@ func resolveHost(host string) (addr, hostname string) {
 			fmt.Printf("Unable to resolve host: %v\n", hostname)
 			os.Exit(1)
 		} else {
-			// Use first returned address
+
 			addr = r[0].String()
 		}
 	}
